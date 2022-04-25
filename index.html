@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 1 - Least Lines of Code</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+        :root {
+            --color-base-white: #E5E5E5;
+            --color-black-base: #424242;
+            --color-blue: #456CAA;
+            --color-border: #E0E0E0;
+            --color-border-checkbox: #ABB5BE;
+            --color-green: #35B082;
+            --color-icon: #757575;
+            --color-red: #D73926;
+            --color-white: #ffff;
+
+            --font-family-base: 'Roboto', sans-serif;
+            --font-size-title: 1.4rem;
+            --font-size-subtitle: 1.2rem;
+
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+            font-family: var(--font-family-base);
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .fw-800 {font-weight: 800}
+
+        .fw-700 {font-weight: 700}
+
+        .fw-900 {font-weight: 900;}
+
+        .text-green {color: var(--color-green)}
+
+        .text-blue {color: var(--color-blue)}
+
+        .text-red {color: var(--color-red)}
+
+        .text-black {color:var(--color-black-base)}
+
+        .lt-spacing {letter-spacing: 1px;}
+
+        ul {list-style: none;}
+
+        a {
+            color: var(--color-green);
+            text-decoration: none
+        }
+
+        .grid {background-color: var(--color-base-white);}
+
+        .main__cards {
+            background-color: var(--color-white);
+            display: flex;
+            font-family: var(--font-family-base);
+            padding: 4%;
+        }
+
+        .card__row {
+            box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+            font-size: var(--font-size-title);
+            padding: 4%;
+            margin-bottom: 2%;
+        }
+
+        .card__address {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .card__description {
+            text-align: left;
+            padding: 2rem;
+            list-style: none;
+
+        }
+
+        .card__details-button {
+            border: none;
+            border-radius: 50%;
+            color: var(--color-white);
+            font-size: 15px;
+            margin: 2%;
+            padding: 0.6%;
+            width: 28px;
+        }
+
+        .card__details-button.enabled {
+            background-color: var(--color-green);
+        }
+
+        .card__details-button.disable {
+            background-color: var(--color-icon);
+        }
+
+        .enabledbutton {
+            background-color: var(--color-green);
+            border: 2px solid var(--color-green);
+            bottom: 18px;
+            border-radius: 3px;
+            color: var(--color-white);
+            cursor: pointer;
+            display: inline-flex;
+            font-weight: 700;
+            font-size: 0.6rem;
+            left: 30px;
+            letter-spacing: .1em;
+            margin-left: 0.2rem;
+            padding: 0.2rem;
+            position: relative;
+            text-decoration: none;  
+        }
+
+        .disabledbutton {display: none;}
+
+        .button-alt {
+            border-color: #fff;
+            color: #fff;
+            padding: 1em 2em;
+        }
+
+        .card__description-title {
+            color: var(--color-black-base);
+            font-size: 0.9rem;
+            left: 31px;
+            position: relative;
+            top: -12px;
+        }
+
+        input[type="checkbox"] {
+            appearance: none;
+            background-color: var(--color-white);
+            border: 0.15em solid var(--color-border-checkbox);
+            border-radius: 50%;
+            font: inherit;
+            height: 1.15em;
+            margin: -10px 2px;
+            width: 1.15em;
+            place-content: center;
+            position: absolute;
+            transform: translateY(-0.075em);
+            -webkit-appearance: none;
+        }
+
+        input[type="checkbox"]:checked::before {transform: scale(1);}
+
+        input[type="checkbox"]:focus {border: 0.3em solid var(--color-green)}
+
+        .card__button {
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bolder;
+            margin: 2% 1%;
+            padding: 8px;
+            width: 175px;
+        }
+
+        .card__button.delivery,
+        .card__button.order:hover {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-green);
+            color: var(--color-green);
+        }
+
+        .card__button a,
+        .card__button.order a:hover {
+            color: var(--color-green);
+            text-decoration: none;
+        }
+
+        .card__button:hover,
+        .card__button.order {
+            color: var(--color-white);
+            background-color: var(--color-green);
+            border: 1px solid var(--color-green);
+        }
+
+        .card__order {
+            font-size: var(--font-size-title);
+            margin-left: 2%;
+            width: 41%;
+        }
+
+        .card__row-order {
+            box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+            font-size: var(--font-size-title);
+            margin-bottom: 2%;
+            padding: 2%; 
+        }
+
+        .card__order_details {
+            display: flex;
+            justify-content: space-between;
+            padding: 3%;
+        }
+
+        .card__method p {padding: 2%;}
+
+        .underline{
+            background: #E0E0E0;
+            border-width: 0px;
+            display: block;
+            height: 1px;
+            margin-bottom: 0.7em;
+            width: 100%;
+        }
+</style>
+</head>
+<body>
+    <section class="grid">
+        <header class="header">
+            <section class="main__cards">
+                <div class="card__details">
+                    <div class="card__row">
+                        <p class="text-green fw-900 lt-spacing">
+                            <button class="card__details-button enabled">1</button>Delivery address</p>
+                        <ul class="card__address">
+                            <li class="card__description">
+                                <ul class="actions">
+                                    <li>
+                                        <input type="checkbox" id="tosbox" onchange="enableButton();"></input>
+                                        <input class="disabledbutton" autocomplete="off" id="buybutton" disabled="true" type="button" onclick="buy();" value="Default Address"></input>
+                                        <p class="card__description-title">
+                                            Meghan Quintana <br>
+                                            10612 NW 61st Court<br>
+                                            Parkland, Florida 33076-3749<br>
+                                            United States of America<br>
+                                            954-555-5555<br>
+                                            <span class="text-blue">Edit | Delete</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="card__description">
+                                <input type="checkbox"></input>
+                                <p class="card__description-title">
+                                    Meghan Quintana <br>
+                                    10612 NW 61st Court<br>
+                                    Parkland, Florida 33076-3749<br>
+                                    United States of America<br>
+                                    954-555-5555<br>
+                                </p>
+                            </li>
+                            <li class="card__description">
+                                <input type="checkbox"></input>
+                                <p class="card__description-title">
+                                    Meghan Quintana <br>
+                                    10612 NW 61st Court<br>
+                                    Parkland, Florida 33076-3749<br>
+                                    United States of America<br>
+                                    954-555-5555<br>
+                                </p>
+                            </li>
+                        </ul>
+                        <p><span class="text-blue">Add a new delivery address</span><br>
+                            <a href="#"><button class="card__button delivery lt-spacing fw-800">Save and continue</button></a>
+                        </p>
+                    </div>
+                    <div class="card__row">
+                        <div class="card__method">
+                            <p class="lt-spacing text-black fw-900">
+                                <button class="card__details-button disable">2</button>Delivery Method</p>
+                        </div>
+                    </div>
+                    <div class="card__row">
+                        <div class="card__method">
+                            <p class="lt-spacing text-black fw-900">
+                                <button class="card__details-button disable">3</button>Funds</p>
+                        </div>
+                    </div>
+                    <div class="card__row">
+                        <div class="card__method">
+                            <p class="lt-spacing text-black fw-900">
+                                <button class="card__details-button disable">4</button>Payment</p>
+                        </div>
+                    </div>
+                    <div class="card__row">
+                        <div class="card__method">
+                            <p class="lt-spacing text-black fw-900">
+                                <button class="card__details-button disable">5</button>Review</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card__order">
+                    <div class="card__row-order">
+                        <ul>
+                            <li class="card__order_details">
+                                <p class="fw-700 lt-spacing ">Order Summary</p>
+                            </li>
+                            <li><hr class="underline"></li>
+                            <li class="card__order_details">
+                                <p>Subtotal</p>
+                                <p>$100.00</p>
+                            </li>
+                            <li class="card__order_details">
+                                <p>Shipping & Handling</p>
+                                <p>-</p>
+                            </li>
+                            <li class="card__order_details">
+                                <p>Estimated Taxes</p>
+                                <p>-</p>
+                            </li>
+                            <li><hr class="underline"></li>
+                            <li class="card__order_details">
+                                <p>Network Discount</p>
+                                <p class="text-red">-$40.00</p>
+                            </li>
+                            <li class="card__order_details">
+                                <p>Paid by Funds</p>
+                                <p class="text-red">N/A</p>
+                            </li>
+                            <li class="card__order_details">
+                                <p class="fw-800">Estimated You Pay</p>
+                                <p class="fw-800">$60.00</p>
+                            </li>
+                        </ul>
+                        <a href="#"> <button class="card__button order">Submit your order</button></a>
+                    </div>
+                    <div class="card__row-order">
+                        <div class="card__method">
+                            <p class="fw-900">Account Information</p>
+                            <p>Esports
+                                AC22010013603883</p>
+
+                            <p>Contact</p>
+                            <p class="fw-900">
+                                Erik Halber</p>
+                            <p>
+                                9544766211 </p>
+                            <p> ehalber@sproutloud.com</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </section>
+    </header>
+    <section>
+</body>
+</html>
+<script>
+    function enableButton() {
+        if (document.getElementById("tosbox").checked == true) { document.getElementById("buybutton").disabled = false; document.getElementById("buybutton").className = "enabledbutton"; }
+        if (document.getElementById("tosbox").checked == false) { document.getElementById("buybutton").disabled = true; document.getElementById("buybutton").className = "disabledbutton"; }
+    }
+    function buy() { window.open("#"); }
+</script>
